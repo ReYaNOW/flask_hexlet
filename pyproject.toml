@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "flask-hexlet"
+version = "0.1.0"
+description = ""
+authors = ["Sergei <reyangood@gmail.com>"]
+packages = [{include = "lessons"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+flask = "^3.0.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
