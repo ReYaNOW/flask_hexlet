@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Example application</title>
+  </head>
+  <body>
+    <!-- BEGIN (write your solution here) -->
+    <table>
+      <tr>
+        <td>id</td>
+        <td>first_name</td>
+      </tr>
+      {% for user in users %}
+      <tr>
+        <td>{{ user['id'] }}</td>
+        <td><a href="/users/{{ user['id'] }}">{{ user['first_name'] }}</a></td>
+      </tr>
+      {% endfor %}
+    </table>
+    <!-- END -->
+  </body>
+</html>

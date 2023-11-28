@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Example application</title>
+  </head>
+  <body>
+    <a href="/users">Пользователи</a>
+    <!-- BEGIN (write your solution here) -->
+    {% for k, v in user.items() %}
+    <h1>{{ k }} = {{ v }}</h1>
+    {% endfor %}
+    <!-- END -->
+  </body>
+</html>
