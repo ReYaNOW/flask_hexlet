@@ -9,16 +9,10 @@ def hello_world():
     return 'Hello, Hexlet!'
 
 
-# @app.route('/users/<id_>')
-# def users(id_):
-#     return render_template(
-#         'index.html',
-#         name=id_,
-#     )
-
 @app.route('/users/<id_>')
 def users(id_):
+    print(id_)
     return render_template(
-        'users/show.html',
-        name=id_,
+        'index.html',
+        value=id_,
     )
