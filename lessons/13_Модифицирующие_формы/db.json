@@ -1,1 +1,27 @@
-[{"id": 777, "name": "Toto", "email": "toto@hexlet.io"}, {"name": "ReYaN", "email": "reyangood@gmail.com", "id": 652}, {"name": "abc", "email": "abc@gmail.com", "id": 241}, {"name": "abc", "email": "abc@gmail.com", "id": 207}, {"name": "1", "email": "1", "id": 513}]
+[
+  {
+    "id": 777,
+    "name": "Toto",
+    "email": "toto@hexlet.io"
+  },
+  {
+    "name": "ReYaN",
+    "email": "reyangood@gmail.com",
+    "id": 652
+  },
+  {
+    "name": "abc",
+    "email": "abc@gmail.com",
+    "id": 241
+  },
+  {
+    "name": "abc",
+    "email": "abc@gmail.com",
+    "id": 207
+  },
+  {
+    "name": "1",
+    "email": "1",
+    "id": 513
+  }
+]

@@ -15,7 +15,7 @@ def generate_companies(companies_count):
     companies = []
     for i in range(companies_count):
         companies.append(
-            {"name": fake.company(), "phone": fake.phone_number()}
+            {'name': fake.company(), 'phone': fake.phone_number()}
         )
     return companies
 

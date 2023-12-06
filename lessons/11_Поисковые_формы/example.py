@@ -14,7 +14,7 @@ def hello_world():
 @app.route('/users')
 def get_users():
     search = request.args.get('term', '')
-    
+
     if search:
         term = search.lower()
         filtered_users = [user for user in users if term in user]
