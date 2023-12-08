@@ -1,17 +1,1 @@
-[
-  {
-    "id": 777,
-    "name": "Toto",
-    "email": "toto@hexlet.io"
-  },
-  {
-    "name": "ReYaN",
-    "email": "reyangood@gmail.com",
-    "id": 652
-  },
-  {
-    "name": "asasg",
-    "email": "asdgags",
-    "id": 884
-  }
-]
+[{"id": 777, "name": "toto", "email": "toto@hexlet.io"}, {"name": "ReYaN", "email": "reyangood@gmail.com", "id": 652}, {"name": "asdg", "email": "asasf", "id": 244}, {"name": "abc", "email": "abcdef", "id": 986}]
