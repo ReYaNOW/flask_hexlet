@@ -7,6 +7,7 @@ from flask import (
     get_flashed_messages,
     render_template,
     make_response,
+    session,
 )
 import json
 import random
@@ -28,13 +29,32 @@ app.secret_key = 'secret_key'
 
 @app.route('/')
 def hello_world():
-    return 'Hello, Hexlet!'
+    return redirect(url_for('get_users'))
+
+
+@app.route('/login', methods=['GET'])
+def login_page():
+    return render_template('users/login.html', password='', errors='')  # noqa
+
+
+@app.route('/login', methods=['POST'])
+def login_post():
+    password = request.form.get('password')
+    if password:
+        if password.isalpha():
+            session['is_logged'] = True
+            return redirect(url_for('get_users'))
+    return render_template(
+        'users/login.html',  # noqa
+        password=password,
+        errors='can only contain letters',
+    )
 
 
 @app.get('/users')
 def get_users():
-    # with open('db.json') as db_file:
-    #     users = json.loads(db_file.read())
+    if not session.get('is_logged'):
+        return redirect(url_for('login_page'))
 
     users = request.cookies.get('users')
     if not users:
@@ -73,9 +93,6 @@ def users_new():
 
 @app.post('/users')
 def users_post():
-    # with open('db.json') as db_file:
-    #     users = json.loads(db_file.read())
-
     user = request.form.to_dict()
     errors = validate_user(user)
     if errors:
@@ -99,10 +116,6 @@ def users_post():
     encoded_users = json.dumps(users)
     response = make_response(redirect(url_for('get_users'), code=302))
     response.set_cookie('users', encoded_users)
-    print(response)
-    # with open('db.json', 'w') as db_file:
-    #     db_file.write(json.dumps(users))
-
     return response
 
 
@@ -112,8 +125,6 @@ def get_user(id_):
     if not users:
         users = '[]'
     users = json.loads(users)
-    # with open('db.json') as db_file:
-    #     users = json.loads(db_file.read())
 
     for user in users:
         if id_ == user['id']:
@@ -125,9 +136,6 @@ def get_user(id_):
 
 @app.route('/users/<int:id_>/edit')
 def edit_user(id_):
-    # with open('db.json') as db_file:
-    #     users = json.loads(db_file.read())
-
     users = request.cookies.get('users')
     if not users:
         users = '[]'
@@ -146,9 +154,6 @@ def edit_user(id_):
 
 @app.post('/users/<int:id_>')
 def user_post(id_):
-    # with open('db.json') as db_file:
-    #     users = json.loads(db_file.read())
-
     users = request.cookies.get('users')
     if not users:
         users = '[]'
@@ -171,9 +176,6 @@ def user_post(id_):
             users[i].update(updated_user)
             flash('User was updated successfully', 'success')
 
-            # with open('db.json', 'w') as db_file:
-            #     db_file.write(json.dumps(users))
-
             encoded_users = json.dumps(users)
             response = make_response(
                 redirect(url_for('get_user', id_=id_), code=302)
@@ -188,9 +190,6 @@ def user_post(id_):
 
 @app.route('/users/<int:id_>/delete', methods=['POST'])
 def delete_user(id_):
-    # with open('db.json') as db_file:
-    #     users = json.loads(db_file.read())
-
     users = request.cookies.get('users')
     if not users:
         users = '[]'
@@ -199,8 +198,6 @@ def delete_user(id_):
     for i, user in enumerate(users):
         if id_ == user['id']:
             users.pop(i)
-            # with open('db.json', 'w') as db_file:
-            #     db_file.write(json.dumps(users))
 
             encoded_users = json.dumps(users)
             response = make_response(redirect(url_for('get_users')))

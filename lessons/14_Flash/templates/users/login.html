@@ -1,0 +1,12 @@
+<h1>Login</h1>
+
+<form action="{{ url_for('login_post') }}" method="post">
+    <label>
+      <input type="text" required name="password" value="{{  password  }}">
+    </label>
+    <input type="submit" value="Login">
+    {% if errors %}
+      <div>{{ errors }}</div>
+    {% endif %}
+
+</form>
